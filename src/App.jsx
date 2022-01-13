@@ -4,6 +4,7 @@ import axios from 'axios';
 import Cart from './components/Cart.jsx';
 import Items from './components/Items.jsx';
 import ItemDetail from './components/ItemDetail.jsx';
+import AddItems from './components/AddItems.jsx';
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -21,7 +22,7 @@ export default function App() {
 
   const getItems = () => {
     axios.get('/items').then((result) => {
-      console.log(result);
+      console.log('axios get Items', result);
       setItems(result.data.items);
     });
   };
@@ -32,6 +33,7 @@ export default function App() {
     <div className="container">
       <div className="row">
         <h1 className="page-title">Wow Shopping!</h1>
+        <AddItems />
         <Items items={items} setItemDetail={setItemDetail} />
         {items.length === 0 && (
           <button type="button" onClick={getItems}>
